@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :accommodations, controller: :properties, only: [:index, :show]
-  get "/properties", to: "properties#properties" 
+  get "/properties", to: "properties#properties"
 
   PagesController.action_methods.each do |action|
     get "/#{action}".dasherize, to: "pages##{action}", as: "#{action}_page"

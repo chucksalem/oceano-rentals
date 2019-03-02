@@ -1,7 +1,4 @@
-class ContactMailer < ActionMailer::Base
-  default from: 'info@oceano-rentals.com'
-  default to: 'info@gooceano.com'
-
+class ContactMailer < ApplicationMailer
   def contact(email:, first_name:, last_name:, phone:, message:)
     @email      = email
     @first_name = first_name
