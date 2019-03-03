@@ -10,4 +10,18 @@ RSpec.describe PagesController do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'GET #contact' do
+    it 'returns http success' do
+      get :contact
+
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe 'POST #contact_thank_you' do
+    it 'returns http success' do
+      # pending
+    end
+  end
 end
