@@ -33,6 +33,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'dotenv-rails'
+  gem 'overcommit'
   gem 'pry-rails'
   gem 'rubocop'
 end
@@ -43,11 +44,11 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
   gem 'capistrano3-puma'
+  gem 'letter_opener'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
-  gem "letter_opener"
 end
 
 group :test do
@@ -55,14 +56,14 @@ group :test do
   gem 'chromedriver-helper'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'factory_bot'
+  gem 'faker'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'rspec-virtus'
   gem 'selenium-webdriver'
   gem 'simplecov'
   gem 'webmock'
-  gem 'faker'
-  gem 'factory_bot'
 end
 
 group :doc do
