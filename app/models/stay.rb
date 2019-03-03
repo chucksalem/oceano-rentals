@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Stay
   include Virtus.model
 
@@ -23,16 +25,17 @@ class Stay
 
   def self.lookup(code, start_date:, end_date:, guests:)
     stay = Escapia::UnitStay.new
-    response = stay.execute({
-      date_range: { start: start_date, end: end_date, },
-      guests:     [{ type: 10, count: guests }],
-      unit_code:  code
-    })
+    response = stay.execute(
+      date_range: { start: start_date, end: end_date },
+      guests: [{ type: 10, count: guests }],
+      unit_code: code
+    )
     from_response(response)
   rescue Escapia::Request::Error => e
-    raise Unavailable, e.message
+    raise Unavailable.new(e.message)
   end
 
+  # rubocop:disable Metrics/AbcSize
   def self.from_response(response)
     unit_stay = response[:unit_stay]
     rate      = unit_stay[:unit_rates][:unit_rate][:rates][:rate]
@@ -46,10 +49,10 @@ class Stay
     fees = fees.map do |f|
       description = f[:description].select { |d| d[:@name] == 'Charge Description' }
       {
-        name:           description.count > 0 ? description[0][:text] : '',
-        amount:         f[:@amount].to_f,
-        currency_code:  f[:@currency_code],
-        mandatory:      f[:@mandatory_indicator] == 'true'
+        name: description.count.positive? ? description[0][:text] : '',
+        amount: f[:@amount].to_f,
+        currency_code: f[:@currency_code],
+        mandatory: f[:@mandatory_indicator] == 'true'
       }
     end
 
@@ -60,4 +63,5 @@ class Stay
       total_amount: unit_stay[:total][:@amount_before_tax].to_f + unit_stay[:total][:taxes][:@amount].to_f
     )
   end
+  # rubocop:enable Metrics/AbcSize
 end

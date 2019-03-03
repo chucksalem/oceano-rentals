@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 EscapiaClient = Savon.client do
   wsdl File.expand_path(Rails.root.join('config', 'escapia.wsdl'))
   convert_request_keys_to :camelcase

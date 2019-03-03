@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 describe Unit do
   describe 'fields' do
     it { expect(described_class).to have_attribute(:address).of_type(UnitAddress) }
@@ -48,3 +51,4 @@ describe Unit do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

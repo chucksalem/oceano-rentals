@@ -1,3 +1,5 @@
-role :app, %w(deploy@159.203.67.43)
+# frozen_string_literal: true
+
+role :app, %w[deploy@159.203.67.43]
 
 set :user, 'deploy'

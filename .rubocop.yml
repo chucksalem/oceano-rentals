@@ -1,10 +1,12 @@
 AllCops:
   Excludes:
     - db/schema.rb
+    - bin/*
+    - lib/tasks/cucumber.rake
 Documentation:
   Enabled: false
 LineLength:
-  Max: 120
+  Max: 160
 Style/RaiseArgs:
   EnforcedStyle: compact
 Metrics/MethodLength:

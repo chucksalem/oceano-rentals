@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UnitAmenities
   include Virtus.model
 
@@ -16,24 +18,25 @@ class UnitAmenities
   attribute :golf,                  Boolean, default: false
 
   CODES = {
-    1  => :air_conditioning,
-    2  => :wheelchair_accessible,
-    3  => :internet_access,
-    4  => :hot_tub,
-    5  => :kitchen,
-    6  => :pool,
-    7  => :washer_dryer,
-    8  => :beach,
-    9  => :biking,
+    1 => :air_conditioning,
+    2 => :wheelchair_accessible,
+    3 => :internet_access,
+    4 => :hot_tub,
+    5 => :kitchen,
+    6 => :pool,
+    7 => :washer_dryer,
+    8 => :beach,
+    9 => :biking,
     10 => :boating,
     11 => :fishing,
     12 => :golf,
     13 => :skiing
-  }
+  }.freeze
 
   def self.from_codes(codes)
     amenities = new
     return amenities unless codes.is_a?(Array)
+
     codes.each do |amenity|
       activate_amenity_with_code(amenities, amenity[:@code])
     end

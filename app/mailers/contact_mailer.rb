@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ContactMailer < ApplicationMailer
   def contact(email:, first_name:, last_name:, phone:, message:)
     @email      = email
@@ -15,7 +17,7 @@ class ContactMailer < ApplicationMailer
     @email      = email
     @owner_name = owner_name
     @property_name = property_name
-    @message    = message
+    @message = message
 
     mail(subject: 'Work Order Form')
   end
