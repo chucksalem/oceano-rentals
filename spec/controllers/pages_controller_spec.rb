@@ -11,6 +11,14 @@ RSpec.describe PagesController do
     end
   end
 
+  describe 'GET #maps' do
+    it 'returns http success' do
+      get :maps
+
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe 'GET #contact' do
     it 'returns http success' do
       get :contact
