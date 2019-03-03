@@ -7,7 +7,6 @@ gem 'forecast_io'
 gem 'foreman'
 gem 'multi_json'
 gem 'mailgun-ruby'
-gem 'oj'
 gem 'rack-attack'
 gem 'redis'
 gem 'responders'
@@ -17,12 +16,11 @@ gem 'savon'
 gem 'whenever'
 gem 'will_paginate'
 gem 'figaro'
-gem 'jquery-rails'
 gem 'rails', '~> 5.2.2'
 gem 'sqlite3', '~> 1.3.6'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 gem "rake", "~> 11.0"
 
 gem 'coffee-rails', '~> 4.2'
@@ -51,6 +49,8 @@ group :development do
 end
 
 group :test do
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'

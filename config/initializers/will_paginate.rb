@@ -1,4 +1,4 @@
-if defined?(WillPaginate)
+if defined?(WillPaginate) && !Rails.env.test?
   module WillPaginate
     module ActionView
       def will_paginate(collection = nil, options = {})

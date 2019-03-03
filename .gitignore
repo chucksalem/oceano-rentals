@@ -19,3 +19,4 @@ tmp/restart.txt
 dump.rdb
 .DS_Store
 config/database.yml
+coverage/*

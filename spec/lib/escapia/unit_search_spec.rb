@@ -31,8 +31,7 @@ describe Escapia::UnitSearch do
       body       = subject.payload(criteria).to_xml
 
       expect(body).to have_xpath(xpath: '//evrn:EVRN_UnitSearchRQ', opts: opts)
-      expect(body).to have_xpath(xpath: %(//evrn:StayDateRange[@Start="#{start_date.strftime('%m/%d/%Y')}"]), opts: opts)
-      expect(body).to have_xpath(xpath: %(//evrn:StayDateRange[@End="#{end_date.strftime('%m/%d/%Y')}"]), opts: opts)
+      expect(body).to have_xpath(xpath: %(//evrn:StayDateRange[@Start="#{start_date.strftime('%-m/%-d/%Y')}" and @End="#{end_date.strftime('%-m/%-d/%Y')}"]), opts: opts)
     end
 
     it 'builds rate range' do
