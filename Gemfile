@@ -10,7 +10,6 @@ gem 'mailgun-ruby'
 gem 'rack-attack'
 gem 'redis'
 gem 'responders'
-gem 'rspec-virtus'
 gem 'virtus'
 gem 'savon'
 gem 'whenever'
@@ -58,6 +57,7 @@ group :test do
   gem 'simplecov'
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'rspec-virtus'
 end
 
 group :doc do
