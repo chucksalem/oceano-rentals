@@ -6,7 +6,9 @@ module Escapia
   class Request
     class Error < StandardError; end
 
-    def initialize(username: ENV['ESCAPIA_USERNAME'], password: ENV['ESCAPIA_PASSWORD'], client: EscapiaClient)
+    def initialize(username: Rails.application.credentials.escapia[:username],
+                   password: Rails.application.credentials.escapia[:password],
+                   client: EscapiaClient)
       @username = username
       @password = password
       @client   = client

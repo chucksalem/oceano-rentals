@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 ForecastIO.configure do |configuration|
-  configuration.api_key = ENV['FORECASTIO_API_KEY']
+  configuration.api_key = Rails.application.credentials[:forecastio_api_key]
 end

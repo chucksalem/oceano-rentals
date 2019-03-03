@@ -3,6 +3,7 @@ AllCops:
     - db/schema.rb
     - bin/*
     - lib/tasks/cucumber.rake
+    - config/environments/*.rb
 Documentation:
   Enabled: false
 LineLength:
