@@ -44,6 +44,7 @@ class PropertiesController < ApplicationController
     @start_date        = !params[:start_date].blank? ? params[:start_date] : Date.today.strftime(DATE_FORMAT)
     @end_date          = !params[:end_date].blank? ? params[:end_date] : (Date.today + 7).strftime(DATE_FORMAT)
     @random_units      = UnitRepository.random_units(limit: 3, except: [@id])
+    @reviews           = Review.where(unit_id: @id)
 
     lookup_rates if %i[start_date end_date guests].all? { |k| params.key?(k) && !params[k].blank? }
     images

@@ -18,4 +18,12 @@ Rails.application.routes.draw do
       resources :stays, only: [:get]
     end
   end
+
+  resources :reviews, only: :index
+
+  namespace :admin do
+    root 'dashboard#index'
+
+    resources :reviews, only: :create
+  end
 end

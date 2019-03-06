@@ -17,4 +17,5 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include EscapiaHelpers
   config.include Requests::JsonHelpers, type: :request
+  config.include AuthHelper
 end

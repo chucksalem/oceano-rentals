@@ -8,7 +8,8 @@ Rails.application.config.assets.precompile += %w[pikaday.jquery.js]
 Rails.application.config.assets.precompile += %w[pikaday.js]
 Rails.application.config.assets.precompile += %w[jquery.fancybox.pack.js]
 Rails.application.config.assets.precompile += %w[jquery.fancybox-media.js]
+Rails.application.config.assets.precompile += %w[admin/dashboard.js]
 
-%w[home pages properties accomodations].each do |controller|
+%w[home pages properties accomodations reviews].each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js"]
 end
