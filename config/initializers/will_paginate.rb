@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-if defined?(WillPaginate) && !Rails.env.test?
+require 'will_paginate/view_helpers/link_renderer'
+require 'will_paginate/view_helpers/action_view'
+
+if defined?(WillPaginate)
   module WillPaginate
     module ActionView
       def will_paginate(collection = nil, options = {})

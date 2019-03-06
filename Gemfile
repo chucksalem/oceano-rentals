@@ -24,7 +24,7 @@ gem 'sqlite3', '~> 1.3.6'
 gem 'uglifier'
 gem 'virtus'
 gem 'whenever'
-gem 'will_paginate'
+gem 'will_paginate', '= 3.1.0'
 
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
