@@ -53,7 +53,7 @@ class Unit
     search   = Escapia::UnitSearch.new
     response = search.execute(*criteria)
 
-    return response[:units][:unit].map { |unit| unit[:@unit_code] } if response[:units]
+    return response[:units].map { |_, unit| unit[:@unit_code] } if response[:units]
 
     []
   end
