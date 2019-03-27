@@ -24,6 +24,6 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'dashboard#index'
 
-    resources :reviews, only: :create
+    resources :reviews, except: %i[new show]
   end
 end

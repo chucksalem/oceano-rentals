@@ -1,0 +1,28 @@
+.layout-container
+  %table.reviews-table
+    %colgroup
+      %col{ style: 'width: 10%' }
+      %col{ style: 'width: 10%' }
+      %col{ style: 'width: 25%' }
+      %col{ style: 'width: 35%' }
+      %col{ style: 'width: 10%' }
+      %col{ style: 'width: 10%' }
+    %thead
+      %th ID
+      %th UnitID
+      %th Reviewer
+      %th Description
+      %th Rating
+      %th Actions
+    %tbody
+      - reviews.each do |review|
+        %tr
+          %td= review.id
+          %td= review.unit_id
+          %td= reviewer(review)
+          %td= review.description
+          %td= review.rating
+          %td
+            = link_to 'Edit', edit_admin_review_path(review)
+            %br
+            = link_to 'Delete', admin_review_path(review), data: { confirm: 'Are you sure?' }, method: :delete

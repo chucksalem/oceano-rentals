@@ -1,2 +1,3 @@
-- flash.each do |key, value|
-  = content_tag :div, value, class: "flash flash-#{key}"
+.layout-container
+  - flash.each do |key, value|
+    = content_tag :div, value, class: "flash flash-#{key}"

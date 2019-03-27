@@ -1,32 +1,7 @@
-= content_for :hero_title, 'Admin Panel'
-
 %section.scallop-top.padded-top.padded-bottom.main-content
   .layout-container
     = render 'layouts/flash'
 
     .gw.large-gutter
       .g.sm-one-half
-        %h1.heading-medium-small.up.alt Reviews
-        %p
-          Uploaded file requirements:
-          %br
-          A file must be in Excel format: xls, xlsx, xlsm
-          %br
-          Column №1: First Name
-          %br
-          Column №2: Last Name
-          %br
-          Column №3:
-          = link_to 'UnitCode', 'https://eweb.escapia.com/distribution/api/evrn-api-documentation#UnitDescriptiveInfo', target: :_blank
-          %br
-          Column №4: Description
-          %br
-          Column №5: Rating
-          %br
-          %br
-
-          = link_to 'Download Sample', '/reviews_sample.xlsx'
-
-          = form_with url: admin_reviews_path, local: true, method: :post, multipart: true do |f|
-            %label{ for: :reviews, class: 'btn submit' } Upload Reviews
-            = file_field_tag :reviews, hidden: true, onchange: 'this.form.submit();'
+        = render 'reviews'
