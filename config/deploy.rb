@@ -11,6 +11,8 @@ set :assets_roles, %i[web app]
 set :puma_workers, 2
 set :puma_preload_app, true
 set :deploy_to, '/home/apps/oceano_rentals'
+set :puma_restart_command,
+    'bundle exec pumactl -S /home/apps/oceano_rentals/shared/tmp/pids/puma.state -F /home/apps/oceano_rentals/shared/config/puma.rb restart'
 
 append :linked_files, 'config/database.yml', 'config/master.key'
 append :linked_dirs, '.bundle', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'public/uploads'
