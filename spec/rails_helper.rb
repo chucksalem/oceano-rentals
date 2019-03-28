@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 
@@ -19,3 +17,16 @@ RSpec.configure do |config|
   config.include Requests::JsonHelpers, type: :request
   config.include AuthHelper
 end
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/vcr'
+  c.stub_with :webmock
+  c.allow_http_connections_when_no_cassette = true
+  c.configure_rspec_metadata!
+end
+
+RedisClient = Redis.new(
+    host: ENV['REDIS_HOST'] || 'localhost',
+    port: ENV['REDIS_PORT'] || 6379,
+    db: 15
+)

@@ -52,9 +52,9 @@ class Unit
   def self.search(*criteria)
     search   = Escapia::UnitSearch.new
     response = search.execute(*criteria)
-    units = response[:units][:unit]
 
     if response[:units]
+      units = response[:units][:unit]
       return response[:units][:unit].map { |unit| unit[:@unit_code] } if units.is_a?(Array)
       return response[:units].map { |_, unit| unit[:@unit_code] } if units.is_a?(Hash)
     end

@@ -1,8 +1,4 @@
-# frozen_string_literal: true
-
-require 'rails_helper'
-
-RSpec.describe PagesController do
+describe PagesController do
   describe 'GET #resources' do
     it 'returns http success' do
       get :resources

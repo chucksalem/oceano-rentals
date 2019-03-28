@@ -79,6 +79,7 @@ class PropertiesController < ApplicationController
         criteria.delete(:date_range)
       end
       criteria[:guests] = [{ type: 10, count: params[:guests] }] unless [nil, '', 'all'].include?(params[:guests])
+
       codes += UnitRepository.search(criteria)
     end
 
