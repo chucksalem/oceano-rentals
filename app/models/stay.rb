@@ -40,9 +40,13 @@ class Stay
     unit_stay = response[:unit_stay]
     rate      = unit_stay[:unit_rates][:unit_rate][:rates][:rate]
 
-    taxes = rate[:base][:taxes] || []
-    taxes = [taxes[:tax]] if taxes.is_a?(Hash)
-    taxes = taxes.map { |t| { amount: t[:@amount].to_f } }
+    taxes = rate[:base][:taxes]
+    taxes_amount =
+      if taxes.any?
+        [taxes[:tax]].flatten.map { |t| { amount: t[:@amount].to_f } }
+      else
+        {}
+      end
 
     fees = rate[:fees][:fee]
     fees = [fees] if fees.is_a?(Hash)
@@ -58,7 +62,7 @@ class Stay
 
     new(
       base_amount: rate[:base][:@amount_before_tax],
-      taxes: taxes,
+      taxes: taxes_amount,
       fees: fees,
       total_amount: unit_stay[:total][:@amount_before_tax].to_f + unit_stay[:total][:taxes][:@amount].to_f
     )
