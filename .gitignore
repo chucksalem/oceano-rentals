@@ -6,7 +6,7 @@ tmp/*
 vendor/*
 storage/*
 public/assets
-/node_modules
+/node_modulesaccommodations?utf8=✓&start_date=4%2F4%2F2019&end_date=4%2F6%2F2019
 /yarn-error.log
 /public/assets
 .byebug_history
@@ -22,3 +22,4 @@ config/database.yml
 coverage/*
 app.org
 .idea/*
+docker-compose.yml

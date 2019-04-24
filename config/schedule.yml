@@ -1,0 +1,9 @@
+weather:
+  cron: "0 * * * *"
+  class: "WeatherWorker"
+  queue: default
+
+properties:
+  cron: "0 * * * *"
+  class: "PropertiesWorker"
+  queue: default

@@ -1,0 +1,12 @@
+echo PASSWORD_HERE | docker secret create psql_password -
+docker rmi $(docker images | grep "^<none>" | awk "{print $3}") - remove all untagged images
+
+docker secret create env-collection-manager-atray attray.env
+
+docker node update --label-add type=database cfwts3r6thnya9m6hnqisjb3d
+docker node update --label-add type=app yy6bfcuvm3sxg1l61eorj57q7
+docker network create -d overlay --attachable internal-network
+docker network create -d overlay --attachable public-network
+
+
+docker service logs -f  atray_collection_manager_cable

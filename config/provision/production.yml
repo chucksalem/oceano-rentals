@@ -1,0 +1,30 @@
+---
+- hosts: server
+  remote_user: deploy
+  gather_facts: true
+  vars:
+    user: app
+    app_docker_compose_path_src: ./files/docker/docker-compose.yml
+    app_docker_compose_path_dst: "/home/{{ user }}/docker/collection-manager.atray.io"
+    stack_name: oceano_rentals
+  tasks:
+    - name: create directory if not exsit for docker-compose.yml
+      file:
+        path: "{{ app_docker_compose_path_dst }}"
+        state: directory
+        recurse: yes
+        owner: '{{user}}'
+      tags:
+        - deploy
+    - name: copy compose file
+      copy:
+        force: yes
+        src: "{{ app_docker_compose_path_src }}"
+        dest: "{{ app_docker_compose_path_dst }}"
+        owner: '{{user}}'
+      tags:
+        - deploy
+    - name: "deploy {{ stack_name }}"
+      command: "docker stack deploy --compose-file={{ app_docker_compose_path_dst }}/docker-compose.yml --with-registry-auth {{ stack_name }}"
+      tags:
+        - deploy
