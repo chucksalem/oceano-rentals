@@ -12,6 +12,5 @@
 //
 //= require jquery_ujs
 //= require activestorage
-//= require turbolinks
 //= require global
 //= require DataTables
