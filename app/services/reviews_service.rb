@@ -60,7 +60,7 @@ class ReviewsService
       review.description = parse_description!(row)
       review.rating      = parse_rating!(row)
 
-      review.save!
+      review.save! if review.unit_id
     end
   end
 
@@ -75,7 +75,7 @@ class ReviewsService
   def parse_unit_id!(row)
     code = row[2].value.to_s
     raw = RedisClient.get("units:#{code}")
-    raise "Error! Unit not found" if raw.nil?
+    return nil unless raw
     code
   end
 
