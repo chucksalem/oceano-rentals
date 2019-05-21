@@ -46,7 +46,7 @@ class ReviewsService
   end
 
   def validate_row_data_presence!(row, row_number)
-    { 0 => 'first name', 1 => 'last name', 2 => 'unit id', 3 => 'description', 4 => 'rating' }.each do |column_number, column_name|
+    { 0 => 'first name', 2 => 'unit id' }.each do |column_number, column_name|
       (raise "Error! Row №#{row_number}: #{column_name} can not be empty!") if row[column_number].blank?
     end
   end
