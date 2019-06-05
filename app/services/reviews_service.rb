@@ -18,10 +18,12 @@ class ReviewsService
 
     Review.transaction do
       add_reviews!(spreadsheet)
+
     end
 
     result[:success] = 'Reviews have been successfully uploaded!'
   rescue StandardError => e
+    binding.pry
     result[:error] ||= e.message
   ensure
     return self
@@ -65,10 +67,12 @@ class ReviewsService
   end
 
   def parse_first_name!(row)
+    return '' unless row[0]
     row[0].value.to_s
   end
 
   def parse_last_name!(row)
+    return '' unless row[1]
     row[1].value.to_s
   end
 
@@ -80,10 +84,12 @@ class ReviewsService
   end
 
   def parse_description!(row)
+    return '' unless row[3]
     row[3].value.to_s
   end
 
   def parse_rating!(row)
+    return 5 unless row[4]
     row[4].value.to_i
   end
 end
