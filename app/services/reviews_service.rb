@@ -23,7 +23,6 @@ class ReviewsService
 
     result[:success] = 'Reviews have been successfully uploaded!'
   rescue StandardError => e
-    binding.pry
     result[:error] ||= e.message
   ensure
     return self
@@ -55,14 +54,17 @@ class ReviewsService
 
   def add_reviews!(spreadsheet)
     spreadsheet.each_row_streaming(pad_cells: true).with_index(1) do |row, row_number|
-      review = Review.new
-      review.first_name  = parse_first_name!(row)
-      review.last_name   = parse_last_name!(row)
-      review.unit_id     = parse_unit_id!(row)
-      review.description = parse_description!(row)
-      review.rating      = parse_rating!(row)
+      begin
+        review = Review.new
+        review.first_name  = parse_first_name!(row)
+        review.last_name   = parse_last_name!(row)
+        review.unit_id     = parse_unit_id!(row)
+        review.description = parse_description!(row)
+        review.rating      = parse_rating!(row)
 
-      review.save! if review.unit_id
+        review.save! if review.unit_id
+      rescue StandardError => e
+      end
     end
   end
 
