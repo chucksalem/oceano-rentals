@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.escapia.com/EVRNService.svc
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+          <s:Body>
+            <EVRN_UnitSearchRQ xmlns="http://www.escapia.com/EVRN/2007/02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" TransactionIdentifier="995da5fe-5cbc-4bee-95c0-6520e70cdfff" EchoToken="request" Version="1.0" MaxResponses="2147483647" SortOrder="G">
+              <POS>
+                <Source>
+                  <RequestorID ID="OceanoRentals" MessagePassword="dioenRionz0e!"/>
+                </Source>
+              </POS>
+              <Criteria AvailableOnlyIndicator="true">
+                <Criterion>
+                  <Address>
+                    <CountryName Code="MX"/>
+                  </Address>
+                  <UnitStayCandidate>
+                    <GuestCounts>
+                      <GuestCount AgeQualifyingCode="10" Count="4"/>
+                    </GuestCounts>
+                  </UnitStayCandidate>
+                  <StayDateRange Start="3/28/2019" End="3/30/2019"/>
+                </Criterion>
+              </Criteria>
+            </EVRN_UnitSearchRQ>
+          </s:Body>
+        </s:Envelope>
+    headers:
+      Soapaction:
+      - '"UnitSearch"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '1007'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Thu, 28 Mar 2019 00:10:56 GMT
+      Content-Length:
+      - '414'
+    body:
+      encoding: ASCII-8BIT
+      string: <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><EVRN_UnitSearchRS
+        EchoToken="request" TimeStamp="2019-03-27T19:10:57.2859905-05:00" Version="1.0"
+        TransactionIdentifier="995da5fe-5cbc-4bee-95c0-6520e70cdfff" xmlns="http://www.escapia.com/EVRN/2007/02"><Success/><Units/></EVRN_UnitSearchRS></s:Body></s:Envelope>
+    http_version: 
+  recorded_at: Thu, 28 Mar 2019 00:10:57 GMT
+recorded_with: VCR 4.0.0

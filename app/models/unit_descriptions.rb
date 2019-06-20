@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UnitDescriptions
   include Virtus.model
 
@@ -37,10 +39,10 @@ class UnitDescriptions
                     end
 
       {
-        formats:     clean_image_formats(image[:image_format]),
+        formats: clean_image_formats(image[:image_format]),
         description: description,
-        category:    image[:@category] || 'None',
-        default:     image[:@is_default] == 'true'
+        category: image[:@category] || 'None',
+        default: image[:@is_default] == 'true'
       }
     end
   end
@@ -48,9 +50,9 @@ class UnitDescriptions
   def self.clean_image_formats(formats)
     formats.map do |format|
       {
-        url:      format[:url],
-        width:    format[:@width],
-        height:   format[:@height],
+        url: format[:url],
+        width: format[:@width],
+        height: format[:@height],
         category: format[:@dimension_category]
       }
     end
@@ -68,7 +70,7 @@ class UnitDescriptions
   def self.clean_text(texts)
     texts.map do |text|
       {
-        title:       text[:@title],
+        title: text[:@title],
         description: text[:description]
       }
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CacheProperties
   TTL_SECONDS = (24 * 60 * 60).freeze
 
@@ -24,6 +26,7 @@ class CacheProperties
       area_key  = area_key_from_name(unit.address.street)
       old_codes = redis.sdiff(area_key, all_units_key)
       next if old_codes.empty?
+
       redis.srem(area_key, old_codes)
     end
     logger.info('Done.')
@@ -53,7 +56,7 @@ class CacheProperties
         redis.setex(unit_key(code), TTL_SECONDS, MultiJson.dump(unit))
         redis.sadd(all_units_key, code)
         unit
-      rescue
+      rescue StandardError
         logger.error("skipping #{code}")
         nil
       end

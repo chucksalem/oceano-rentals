@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.escapia.com/EVRNService.svc
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+          <s:Body>
+            <EVRN_UnitSearchRQ xmlns="http://www.escapia.com/EVRN/2007/02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" TransactionIdentifier="1747e37c-3a5d-4e7b-b129-cd035e459b46" EchoToken="request" Version="1.0" MaxResponses="2147483647" SortOrder="G">
+              <POS>
+                <Source>
+                  <RequestorID ID="OceanoRentals" MessagePassword="dioenRionz0e!"/>
+                </Source>
+              </POS>
+              <Criteria AvailableOnlyIndicator="true">
+                <Criterion>
+                  <Address>
+                    <CountryName Code="MX"/>
+                  </Address>
+                  <UnitStayCandidate>
+                    <GuestCounts>
+                      <GuestCount AgeQualifyingCode="10" Count="1"/>
+                    </GuestCounts>
+                  </UnitStayCandidate>
+                  <StayDateRange Start="3/28/2019" End="3/30/2019"/>
+                </Criterion>
+              </Criteria>
+            </EVRN_UnitSearchRQ>
+          </s:Body>
+        </s:Envelope>
+    headers:
+      Soapaction:
+      - '"UnitSearch"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '1007'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Date:
+      - Thu, 28 Mar 2019 00:10:45 GMT
+      Content-Length:
+      - '1180'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PHM6RW52ZWxvcGUgeG1sbnM6cz0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iPjxzOkJvZHkgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSI+PEVWUk5fVW5pdFNlYXJjaFJTIEVjaG9Ub2tlbj0icmVxdWVzdCIgVGltZVN0YW1wPSIyMDE5LTAzLTI3VDE3OjEwOjQ1LjQ5MDc2Mi0wNzowMCIgVmVyc2lvbj0iMS4wIiBUcmFuc2FjdGlvbklkZW50aWZpZXI9IjE3NDdlMzdjLTNhNWQtNGU3Yi1iMTI5LWNkMDM1ZTQ1OWI0NiIgeG1sbnM9Imh0dHA6Ly93d3cuZXNjYXBpYS5jb20vRVZSTi8yMDA3LzAyIj48U3VjY2Vzcy8+PFVuaXRzPjxVbml0IFVuaXRDb2RlPSIxOTExLTg5NDc5IiBVbml0TmFtZT0iSGFjaWVuZGEgZGVsIE1hciAtIENvdXJ0eWFyZCIgSW5mb1NvdXJjZT0iRVZSTi1WUlMiIFVuaXRIZWFkbGluZT0iSGFjaWVuZGEgZGVsIE1hciAtIENvdXJ0eWFyZCIgVW5pdENsYXNzQ29kZT0iOCIgQXZhaWxhYmlsaXR5U3RhdHVzPSJBdmFpbGFibGVGb3JTYWxlIj48VmVuZG9yTWVzc2FnZXM+PFZlbmRvck1lc3NhZ2UgSW5mb1R5cGU9IjE3Ij48U3ViU2VjdGlvbj48UGFyYWdyYXBoPjxVUkw+aHR0cHM6Ly9waWN0dXJlcy5lc2NhcGlhLmNvbS9PQ0VBTk8vMzE1NzQ5MDQ4OS5qcGc8L1VSTD48L1BhcmFncmFwaD48UGFyYWdyYXBoPjxUZXh0PkNvdXJ0eWFyZCAxIGlzIGEgcm9vbSBsb2NhdGVkIGF0IEhhY2llbmRhIGRlbCBNYXIgLiAgU2VlIGJlbG93IGZvciBtb3JlIGluZm9ybWF0aW9uIGFib3V0IHRoZSBjb21wbGV4LiAgQ291cnR5YXJkIDEgc2xlZXBzIDIgcGVvcGxlLiAgSXQgaGFzIGEgcXVlZW4gc2l6ZSBiZWQsIHByaXZhdGUgYmF0aCwgaGVhdCwgQUMsIGNlaWxpbmcgZmFuLjwvVGV4dD48L1BhcmFncmFwaD48L1N1YlNlY3Rpb24+PC9WZW5kb3JNZXNzYWdlPjwvVmVuZG9yTWVzc2FnZXM+PFBvc2l0aW9uIExhdGl0dWRlPSIzMS4yOTEiIExvbmdpdHVkZT0iLTExMy40OSIvPjxBZGRyZXNzIEZvcm1hdHRlZEluZD0idHJ1ZSIgVXNlVHlwZT0iNyI+PEFkZHJlc3NMaW5lPkxhcyBDb25jaGFzPC9BZGRyZXNzTGluZT48Q2l0eU5hbWU+UHVlcnRvIFBlw7Fhc2NvIENlbnRybzwvQ2l0eU5hbWU+PFBvc3RhbENvZGU+ODM1NTA8L1Bvc3RhbENvZGU+PFN0YXRlUHJvdiBTdGF0ZUNvZGU9IlNPTiI+U29ub3JhPC9TdGF0ZVByb3Y+PENvdW50cnlOYW1lIENvZGU9Ik1YIj5NZXhpY288L0NvdW50cnlOYW1lPjwvQWRkcmVzcz48QXdhcmQgUHJvdmlkZXI9IkVzY2FwaWEtVW5pdCIgUmF0aW5nPSIzLjgiLz48VW5pdEFtZW5pdHkgQ29kZT0iMSIvPjxVbml0QW1lbml0eSBDb2RlPSIzIi8+PFVuaXRBbWVuaXR5IENvZGU9IjUiLz48VW5pdEFtZW5pdHkgQ29kZT0iOCIvPjxVbml0U3VtbWFyeSBOdW1iZXJGbG9vcnM9IjEiIE5vblNtb2tpbmc9InRydWUiIE1heE9jY3VwYW5jeT0iMiI+PFJvb21Db3VudHM+PFJvb21Db3VudCBDb2RlPSI1NSIgRml4ZWQ9IjEiLz48Um9vbUNvdW50IENvZGU9IjUyIiBGaXhlZD0iMSIvPjwvUm9vbUNvdW50cz48UGV0c1BvbGljaWVzIFBldHNBbGxvd2VkQ29kZT0iUGV0cyBOb3QgQWxsb3dlZCIvPjwvVW5pdFN1bW1hcnk+PFJhdGVSYW5nZSBGaXhlZFJhdGU9IjE1OS4wNCIgRml4ZWRSZW50PSIxMzguMDAiIEZpeGVkRmVlcz0iMTAuMDAiIEZpeGVkVGF4PSIxMS4wNCIgTWluQ29tbWlzc2lvblBlcmNlbnQ9IjAuMDAwMCIgTWF4Q29tbWlzc2lvblBlcmNlbnQ9IjAuMCIvPjwvVW5pdD48L1VuaXRzPjwvRVZSTl9Vbml0U2VhcmNoUlM+PC9zOkJvZHk+PC9zOkVudmVsb3BlPg==
+    http_version: 
+  recorded_at: Thu, 28 Mar 2019 00:10:45 GMT
+recorded_with: VCR 4.0.0

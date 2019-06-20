@@ -1,0 +1,20 @@
+= content_for :lede, 'Reviews'
+
+%section.reviews.padded-top.scallop-top.beige-bg
+  .layout-container
+    .gw.large-gutter
+      .g.sm-three-fourths
+        = form_with model: review, url: admin_review_path(review) do |f|
+          %fieldset.half
+            = f.label :first_name, 'First Name'
+            = f.text_field :first_name
+          %fieldset.half.right
+            = f.label :last_name, 'Last Name'
+            = f.text_field :last_name
+          %fieldset
+            = f.label :rating
+            = f.number_field :rating, in: 1..5
+          %fieldset
+            = f.label :description
+            = f.text_area :description
+          = f.submit 'Update', class: 'btn submit'

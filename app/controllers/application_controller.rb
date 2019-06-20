@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
@@ -5,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :home?
   helper_method :property_detail?
 
-  before_filter :weather
+  before_action :weather
 
   private
 

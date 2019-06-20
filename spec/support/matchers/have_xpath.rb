@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'nokogiri'
 
 RSpec::Matchers.define :have_xpath do |xpath:, value: nil, opts:|

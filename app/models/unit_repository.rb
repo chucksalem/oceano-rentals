@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UnitRepository
   include Hashable
 
@@ -11,6 +13,7 @@ class UnitRepository
     key   = "search:#{hash_to_key(criteria)}"
     value = redis.get(key)
     return MultiJson.load(value) unless value.nil?
+
     Unit.search(criteria).tap { |c| redis.setex(key, TTL_SECONDS, MultiJson.dump(c)) }
   end
 
@@ -21,6 +24,7 @@ class UnitRepository
   def self.get(code)
     raw = redis.get("units:#{code}")
     raise Unit::NotFound if raw.nil?
+
     hash = MultiJson.load(raw, symbolize_keys: true)
     Unit.from_hash(hash)
   end
@@ -31,7 +35,7 @@ class UnitRepository
     codes       = all.sample(limit).map! { |k| k.sub('units:', '') }
 
     codes.each_with_object([]) do |code, accum|
-      accum << self.get(code)
+      accum << get(code)
       accum
     end
   end

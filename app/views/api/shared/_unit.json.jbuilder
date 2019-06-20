@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.code unit.code
 json.name unit.name
 json.type unit.type
