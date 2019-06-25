@@ -14,3 +14,5 @@
 //= require activestorage
 //= require global
 //= require DataTables
+//= require reviews
+//= require handlebars

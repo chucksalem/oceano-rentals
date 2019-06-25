@@ -19,7 +19,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :reviews, only: :index
+  resources :reviews, only: :index do
+    get :property, on: :member
+  end
 
   namespace :admin do
     root 'dashboard#index'

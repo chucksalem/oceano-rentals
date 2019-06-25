@@ -129,11 +129,25 @@
   </div>
 </section>
 
+<script id="reviews-template" type="text/x-handlebars-template">
+  <div class="md-two-thirds">
+    <ul class="testimonials testimonials-paginated normal gw large-gutter">
+      <li class="g sm-one-whole">
+        <blockquote>
+          <p class="persons-words">“{{description}}</p>
+          <span class="persons-name">{{first_name}} {{last_name}}</span>
+        </blockquote>
+      </li>
+    </ul>
+  </div>
+</script>
+
 <% if @reviews.any? %>
   <section class="padded-top padded-bottom">
     <div class="layout-container">
       <h2 class="heading-two bottom-spacing-large">Reviews</h2>
-      <%- @reviews.each do |review| %>
+      <div class="reviews-container">
+      <% @reviews.each do |review| %>
         <div class="md-two-thirds">
           <ul class="testimonials testimonials-paginated normal gw large-gutter">
             <li class="g sm-one-whole">
@@ -145,9 +159,15 @@
           </ul>
         </div>
       <% end %>
+      </div>
+      <div class="md-two-thirds">
+        <div class="reviews-show-all">
+          <a href><button class="btn js-show-reviews" data-url="<%=property_review_path(@id) %>"> Show all reviews</button></a>
+        </div>
+      </div>
     </div>
   </section>
-<%- end %>
+<% end %>
 
 <div id="map-container">
   <%

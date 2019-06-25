@@ -77,4 +77,6 @@ end
 
 gem 'rails-assets-DataTables', source: 'https://rails-assets.org'
 
+gem 'rails-assets-handlebars', source: 'https://rails-assets.org'
+
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

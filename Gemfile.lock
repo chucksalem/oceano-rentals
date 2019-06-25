@@ -261,6 +261,7 @@ GEM
       sprockets-rails (>= 2.0.0)
     rails-assets-DataTables (1.10.16)
       rails-assets-jquery (>= 1.7.0)
+    rails-assets-handlebars (4.1.2)
     rails-assets-jquery (3.3.1)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
@@ -456,6 +457,7 @@ DEPENDENCIES
   rack-attack
   rails (~> 5.2.2)
   rails-assets-DataTables!
+  rails-assets-handlebars!
   rake (~> 11.0)
   ransack
   redis
