@@ -8,7 +8,7 @@ gem 'multi_json', '1.11.2'
 gem 'mailgun-ruby', '~>1.1.6'
 gem 'nokogiri', '~>1.10.4'
 gem 'oj', '2.16.1'
-gem 'puma', '3.12.1'
+gem 'puma', '3.12.6'
 gem 'rack-attack', '4.3.0'
 gem 'rails', '4.2.11.1'  # segfaults with any version less than 4.2.8
 gem 'redis', '2.1.1'
