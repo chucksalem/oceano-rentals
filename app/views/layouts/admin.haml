@@ -1,0 +1,33 @@
+%html
+  %head
+    %title Oc&eacute;ano Rentals
+
+    %meta{ charset: 'utf-8' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
+
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = render '/layouts/typekit_embed_code'
+    = render '/layouts/modernizr'
+
+    = yield :stylesheets
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+    = javascript_include_tag "moment"
+    = javascript_include_tag "pikaday"
+    = javascript_include_tag "pikaday.jquery"
+    = javascript_include_tag "jquery.fancybox.pack.js"
+    = javascript_include_tag "jquery.fancybox-media.js"
+
+    = javascript_include_tag 'application', params[:controller], 'data-turbolinks-track': 'reload'
+
+  %body.subpage
+    = content_for :hero_title, 'Admin Panel'
+
+    = render 'layouts/admin/header'
+
+    = yield

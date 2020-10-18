@@ -1,9 +1,7 @@
-server "104.237.159.94", user: "deploy", roles: %w(web app)
+# frozen_string_literal: true
 
-set :pty, true
-
+server '104.237.159.94', user: 'deploy', roles: %w[app db web]
 set :rails_env, 'staging'
-set :user, 'deploy'
-set :deploy_to, -> { "/home/apps/oceano_rentals" }
+set :puma_conf, "#{shared_path}/config/puma.rb"
 
-set :stage, 'production'
+append :linked_files, 'db/staging.sqlite3'

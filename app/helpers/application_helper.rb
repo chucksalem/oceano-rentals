@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def areas
     OceanoConfig[:areas].map do |a|
@@ -8,14 +10,14 @@ module ApplicationHelper
   def sort_by
     [
       ['Guest Rating', 'G'],
-      ['Price', 'P'],
-      ['Location', 'L'],
-      ['Name', 'N']
+      %w[Price P],
+      %w[Location L],
+      %w[Name N]
     ]
   end
 
   def ellipsis(str, length:)
-    str[0..length].gsub(/\s\w+\s*$/,'...')
+    str[0..length].gsub(/\s\w+\s*$/, '...')
   end
 
   def trim_at(str, len)

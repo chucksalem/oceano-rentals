@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Unit
   include Virtus.model
   include Hashable
@@ -32,18 +34,18 @@ class Unit
     content  = response[:unit_descriptive_contents][:unit_descriptive_content]
     info     = content[:unit_info]
     create_from_results(
-      address:       info[:address],
-      amenities:     info[:unit_amenity],
-      code:          content[:@unit_code],
-      descriptions:  info[:descriptions],
-      name:          info[:unit_name],
-      num_floors:    info[:@num_floors],
-      occupancy:     info[:@max_occupancy],
-      position:      info[:position],
-      reviews:       content[:unit_reviews],
-      rooms:         info[:category_codes][:room_info],
-      type_code:     info[:category_codes][:unit_category][:@code],
-      beachfront:    has_beachfront?(info)
+      address: info[:address],
+      amenities: info[:unit_amenity],
+      code: content[:@unit_code],
+      descriptions: info[:descriptions],
+      name: info[:unit_name],
+      num_floors: info[:@num_floors],
+      occupancy: info[:@max_occupancy],
+      position: info[:position],
+      reviews: content[:unit_reviews],
+      rooms: info[:category_codes][:room_info],
+      type_code: info[:category_codes][:unit_category][:@code],
+      beachfront: beachfront?(info)
     )
   end
 
@@ -52,7 +54,9 @@ class Unit
     response = search.execute(*criteria)
 
     if response[:units]
-      return response[:units][:unit].map { |unit| unit[:@unit_code] }
+      units = response[:units][:unit]
+      return response[:units][:unit].map { |unit| unit[:@unit_code] } if units.is_a?(Array)
+      return response[:units].map { |_, unit| unit[:@unit_code] } if units.is_a?(Hash)
     end
 
     []
@@ -85,16 +89,16 @@ class Unit
     unit.beachfront   = beachfront
 
     unit.address = {
-      street:      address[:address_line],
-      city:        address[:city_name],
+      street: address[:address_line],
+      city: address[:city_name],
       postal_code: address[:postal_code],
-      state:       address[:state_prov],
-      country:     address[:country_name]
+      state: address[:state_prov],
+      country: address[:country_name]
     }
 
     unless position.nil?
       unit.position = {
-        latitude:  position[:@latitude],
+        latitude: position[:@latitude],
         longitude: position[:@longitude]
       }
     end
@@ -104,16 +108,16 @@ class Unit
 
   def stay(start_date:, end_date:, guests:)
     stay = Escapia::UnitStay.new
-    response = stay.execute({
-      date_range: { start: start_date, end: end_date, },
-      guests:     [{ type: 10, count: guests }],
-      unit_code:  code
-    })
+    response = stay.execute(
+      date_range: { start: start_date, end: end_date },
+      guests: [{ type: 10, count: guests }],
+      unit_code: code
+    )
     response[:unit_stay][:unit_rates][:unit_rate]
   end
 
   def available_amenities
-    amenities.to_h.select { |k,v| v }.keys
+    amenities.to_h.select { |_k, v| v }.keys
   end
 
   def standard_images
@@ -132,11 +136,9 @@ class Unit
     descriptions.videos
   end
 
-  private
-
-  def self.has_beachfront?(info)
+  private_class_method def self.beachfront?(info)
     info[:category_codes][:custom_category_group].any? do |custom_category|
-      flatten_nested_hash(custom_category).has_value?("Beachfront")
+      flatten_nested_hash(custom_category).value?('Beachfront')
     end
   end
 end

@@ -1,0 +1,14 @@
+.flash {
+  font-size: 2em;
+  line-height: 2.5;
+  margin: 1em 0;
+  padding: 0.5em 0;
+
+  &-error {
+    color: #721c24;
+  }
+
+  &-success {
+    color: #155724;
+  }
+}

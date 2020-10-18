@@ -127,28 +127,45 @@
   </div>
 </section>
 
-<%- @unit.reviews.sample(3).compact.tap do |reviews| %>
-<%- break if reviews.empty? %>
-<section class="padded-top padded-bottom">
-  <div class="glass-background layout-container padding-vertical">
-    <div class="md-two-thirds">
-      <h2 class="heading-medium bottom-spacing-large">Testimonies</h2>
-      <ul class="testimonials testimonials-paginated normal gw large-gutter">
-        <%- reviews.each do |review| %>
-        <li class="g sm-one-whole">
-          <blockquote>
-            <p class="persons-words">“<%= review[:comment].html_safe %></p>
-            <%- unless review[:city].empty? || review[:state].empty? %>
-            <span class="persons-name"><%= review[:city] %>, <%= review[:state] %></span>
-            <% end %>
-          </blockquote>
-        </li>
-        <%- end %>
-      </ul>
-    </div>
+<script id="reviews-template" type="text/x-handlebars-template">
+  <div class="md-two-thirds">
+    <ul class="testimonials testimonials-paginated normal gw large-gutter">
+      <li class="g sm-one-whole">
+        <blockquote>
+          <p class="persons-words">“{{description}}</p>
+          <span class="persons-name">{{first_name}} {{last_name}}</span>
+        </blockquote>
+      </li>
+    </ul>
   </div>
-</section>
-<%- end %>
+</script>
+
+<% if @reviews.any? %>
+  <section class="padded-top padded-bottom">
+    <div class="layout-container">
+      <h2 class="heading-two bottom-spacing-large">Reviews</h2>
+      <div class="reviews-container">
+      <% @reviews.each do |review| %>
+        <div class="md-two-thirds">
+          <ul class="testimonials testimonials-paginated normal gw large-gutter">
+            <li class="g sm-one-whole">
+              <blockquote>
+                <p class="persons-words">“<%= review.description %></p>
+                <span class="persons-name"><%= review.first_name %> <%= review.last_name %></span>
+              </blockquote>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+      </div>
+      <div class="md-two-thirds">
+        <div class="reviews-show-all">
+          <a href><button class="btn js-show-reviews" data-url="<%=property_review_path(@id) %>"> Show all reviews</button></a>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
 
 <div id="map-container">
   <%

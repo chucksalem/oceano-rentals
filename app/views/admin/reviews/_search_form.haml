@@ -1,0 +1,9 @@
+.layout-container
+  .reviews-search
+    = search_form_for @q, url: admin_reviews_path, class: 'gw no-gutter' do |f|
+      %fieldset.g.md-eight-tenths.reviews-search-fieldset
+        = f.search_field :first_name_or_last_name_or_description_cont,
+          class: 'reviews-search-input', placeholder: 'First name or last name or description'
+        -# = text_field_tag :search, nil, placeholder: 'Review id or first name or last name or description or unit code or rating'
+      %footer.g.md-two-elevenths
+        = submit_tag 'Search', class: 'btn btn--green no-min-width max-width'

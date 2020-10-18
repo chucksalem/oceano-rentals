@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 describe Stay do
   describe 'fields' do
     it { expect(described_class).to have_attribute(:base_amount).of_type(Float) }
@@ -14,7 +17,6 @@ describe Stay do
     let(:response) { File.read(File.join(fixtures_path, 'units', 'unit_stay.xml')) }
 
     it 'loads a single unit descriptive lookup' do
-
       stub_escapia(status: 200, body: response)
       stay = Stay.lookup('123', start_date: Date.today, end_date: Date.tomorrow, guests: 1)
       expect(stay.base_amount).to eq(2999.99)
@@ -28,7 +30,7 @@ describe Stay do
       it { expect(described_class).to have_attribute(:amount).of_type(Float) }
     end
   end
-  
+
   describe Stay::Fee do
     describe 'fields' do
       it { expect(described_class).to have_attribute(:name).of_type(String) }
@@ -38,3 +40,4 @@ describe Stay do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

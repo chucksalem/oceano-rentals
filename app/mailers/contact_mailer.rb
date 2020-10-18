@@ -1,7 +1,6 @@
-class ContactMailer < ActionMailer::Base
-  default from: 'info@oceano-rentals.com'
-  default to: 'info@gooceano.com'
+# frozen_string_literal: true
 
+class ContactMailer < ApplicationMailer
   def contact(email:, first_name:, last_name:, phone:, message:)
     @email      = email
     @first_name = first_name
@@ -18,7 +17,7 @@ class ContactMailer < ActionMailer::Base
     @email      = email
     @owner_name = owner_name
     @property_name = property_name
-    @message    = message
+    @message = message
 
     mail(subject: 'Work Order Form')
   end
